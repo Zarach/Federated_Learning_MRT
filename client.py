@@ -69,7 +69,7 @@ def start_client():
     # metrics.append(tf.keras.metrics.Precision())
     # metrics.append(tf.keras.metrics.Recall())
 
-    yolo = YOLO("yolov5nu.pt")
+    yolo = YOLO("yolov5su.pt")
     yolo.to(DEVICE)
     load_data()
 

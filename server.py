@@ -6,7 +6,7 @@ from ultralytics import YOLO
 SERVER_ADDRESS = "0.0.0.0:8080"
 
 def create_model():
-    model = YOLO("yolov5nu.pt")
+    model = YOLO("yolov5su.pt")
     return model
 
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
