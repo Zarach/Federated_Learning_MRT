@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+    ports:
+      - "8080:8080"
+  client_1:
+    image: client
+    build:
+      context: .
+      dockerfile: ./Dockerfile.client
+    ports:
+      - "5001:5000"
+    environment:
+      - SERVER_ADDRESS=server:8080
+  client_2:
+    image: client
+    ports:
+      - "5002:5000"
+    environment:
+      - SERVER_ADDRESS=server:8080
+  client_3:
+    image: client
+    ports:
+      - "5003:5000"
+    environment:
+      - SERVER_ADDRESS=server:8080
