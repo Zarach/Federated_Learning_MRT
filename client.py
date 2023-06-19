@@ -69,7 +69,7 @@ def start_client():
     # metrics.append(tf.keras.metrics.Precision())
     # metrics.append(tf.keras.metrics.Recall())
 
-    yolo = YOLO("yolov5su.pt")
+    yolo = YOLO("yolov5nu.pt")
     yolo.to(DEVICE)
     load_data()
 
@@ -90,22 +90,21 @@ def start_client():
 
         def fit(self, parameters, config):
             self.set_parameters(parameters)
-            yolo.train(data="mrt_code/yolov5/data/mrt_data.yaml", epochs=1)
+            yolo.train(data="mrt_code/yolov5/data/mrt_data.yaml", epochs=1, imgsz=100)
 
             num_files = sum(os.path.isfile(os.path.join(os.path.dirname(__file__)+'\mrt_code\make_dataset\mrt_dataset/train/images/', f)) for f in os.listdir(os.path.dirname(__file__)+'\mrt_code\make_dataset\mrt_dataset/train/images/'))
-            print(yolo.metrics)
-            return self.get_parameters(config={yolo.metrics}), num_files, {}
+            return self.get_parameters(config={}), num_files, {}
 
         def evaluate(self, parameters, config):
             self.set_parameters(parameters)
-            metrics = yolo.val(data="mrt_code/yolov5/data/mrt_data.yaml")
+            #metrics = yolo.val(data="mrt_code/yolov5/data/mrt_data.yaml")
             loss = 0
             accuracy = 0
             num_files = sum(os.path.isfile(
                 os.path.join(os.path.dirname(__file__) + '\mrt_code\make_dataset\mrt_dataset/test/images/', f)) for f
                             in
                             os.listdir(os.path.dirname(__file__) + '\mrt_code\make_dataset\mrt_dataset/test/images/'))
-            return float(loss), num_files, {"accuracy": float(accuracy)}
+            return float(loss), num_files, {"metrics/mAP50(B)": float(yolo.metrics.results_dict["metrics/mAP50(B)"])}
 
         def preprocessing(self):
             split_data.main()
