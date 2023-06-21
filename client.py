@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 import torch
 import torchvision.transforms as transforms
-from cv2.version import headless
+
 from torch.utils.data import DataLoader
 
 from mrt_code.make_dataset import make_data_shuffle, convert_data, split_data, update_xml
