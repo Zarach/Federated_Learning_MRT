@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
 
-
+RUN apt-get update
 RUN apt-get install -y opencv-python-headless
 RUN pip install opencv-python-headless
 
