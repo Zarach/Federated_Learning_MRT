@@ -7,6 +7,7 @@ task.execute_remotely(queue_name='default', clone=False, exit_process=True)
 
 
 import client
+from ultralytics import YOLO
 
 # get local copy of DataBases
 dataset_databases = Dataset.get(dataset_project='FL_MRT', dataset_name='MRT_Raw_Data')
