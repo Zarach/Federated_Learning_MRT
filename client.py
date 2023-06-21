@@ -63,8 +63,8 @@ def load_data():
 # "FL_Data/hh_07"
 # "FL_Data/hh_14"
 @app.route('/startClient', methods=['GET'])
-def start_client():
-
+def start_client(server_adress):
+    SERVER_ADDRESS = server_adress
     # Make TensorFlow log less verbose
     # metrics.append(tf.keras.metrics.Precision())
     # metrics.append(tf.keras.metrics.Recall())
@@ -132,8 +132,8 @@ def start_client():
 
 
 if __name__ == '__main__':
-   #app.run()
-    start_client()
+   app.run()
+   #start_client()
 
 
 
